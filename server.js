@@ -9,18 +9,18 @@ const connectDB = require('./config/db');
 const app = express();
 
 // Connect to MongoDB
-// connectDB(); // localhost...
+ connectDB(); // localhost...
 
-let isConnected=false;
+// let isConnected=false;
 
-app.use((req,res,next)=>
-{
-  if(!isConnected)
-  {
-    connectDB()
-  }
-  next();
-})
+// app.use((req,res,next)=>
+// {
+//   if(!isConnected)
+//   {
+//     connectDB()
+//   }
+//   next();
+// })
 
 // // Security middleware
 // app.use(helmet());

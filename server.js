@@ -41,7 +41,7 @@ app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Logging
-if (process.env.NODE_ENV !== 'production') app.use(morgan('dev'));
+// if (process.env.NODE_ENV !== 'production') app.use(morgan('dev'));
 
 // Routes
 app.use('/api/auth', authLimiter, require('./routes/auth'));

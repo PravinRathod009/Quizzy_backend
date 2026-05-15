@@ -16,11 +16,15 @@ connectDB();
 // Security middleware
 // app.use(helmet());
 
-// app.use(cors({
-//   origin: process.env.CLIENT_URL || '*',
-//   credentials: true
-// }));
+// const cors = require('cors');
 
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://your-frontend.vercel.app'
+  ],
+  credentials: true
+}));
 // Rate limiting
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,

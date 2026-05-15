@@ -21,7 +21,7 @@ connectDB();
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://your-frontend.vercel.app'
+    'https://quiz-frontend-sand.vercel.app'
   ],
   credentials: true
 }));

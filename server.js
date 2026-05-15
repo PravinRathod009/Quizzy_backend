@@ -14,12 +14,12 @@ const app = express();
 connectDB();
 
 // Security middleware
-app.use(helmet());
+// app.use(helmet());
 
-app.use(cors({
-  origin: process.env.CLIENT_URL || '*',
-  credentials: true
-}));
+// app.use(cors({
+//   origin: process.env.CLIENT_URL || '*',
+//   credentials: true
+// }));
 
 // Rate limiting
 const authLimiter = rateLimit({
@@ -35,9 +35,9 @@ app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Logging
-if (process.env.NODE_ENV !== 'production') {
-  app.use(morgan('dev'));
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   app.use(morgan('dev'));
+// }
 
 // Routes
 app.use('/api/auth', authLimiter, require('./routes/auth'));
@@ -65,6 +65,9 @@ app.use((req, res) => {
   });
 });
 
+// Health check
+app.get('/api/health', (req, res) => res.json({ status: 'OKkkk...', time: new Date() }));
+
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -75,13 +78,13 @@ app.use((err, req, res, next) => {
 });
 
 // Localhost only
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 7000;
+// if (process.env.NODE_ENV !== 'production') {
+//   const PORT = process.env.PORT || 7000;
 
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-  });
-}
+//   app.listen(PORT, () => {
+//     console.log(`🚀 Server running on port ${PORT}`);
+//   });
+// }
 
 // Export for Vercel
 module.exports = app;

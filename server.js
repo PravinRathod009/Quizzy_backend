@@ -49,7 +49,8 @@ app.use('/api/admin', require('./routes/admin'));
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'OK',
-    time: new Date()
+    time: new Date(),
+    message:"server running goook"
   });
 });
 
@@ -65,8 +66,6 @@ app.use((req, res) => {
   });
 });
 
-// Health check
-app.get('/api/health', (req, res) => res.json({ status: 'OKkkk...', time: new Date() }));
 
 // Global error handler
 app.use((err, req, res, next) => {
